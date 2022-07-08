@@ -58,11 +58,13 @@ var uuidv4 = require('uuid/v4'),
         setBasePath: function (json) {
             this.basePath = '';
             if (json.host) {
-                this.basePath = json.host;
+	var endpoint=json.host.split(".");
+		this.basePath = endpoint[0]+".{{region}}.{{base_url}}"
+
             }
-            if (json.basePath) {
-                this.basePath += json.basePath;
-            }
+          //  if (json.basePath) {
+            //    this.basePath += json.basePath;
+           //}
 
             if (json.schemes && json.schemes.indexOf('https') != -1) {
                 this.basePath = 'https://' + this.basePath;
@@ -172,7 +174,7 @@ var uuidv4 = require('uuid/v4'),
             var root = this,
                 request = {
                     'id': uuidv4(),
-                    'headers': '',
+                    'headers': 'X-Auth-Token:{{token}}',
                     'url': '',
                     'pathVariables': {},
                     'preRequestScript': '',
@@ -185,7 +187,7 @@ var uuidv4 = require('uuid/v4'),
                     'time': '',
                     'version': 2,
                     'responses': [],
-                    'tests': '',
+                    'tests': 'utils.CommonErrorFunction(pm, postman, responseBody,200, 0, 5000);',
                     'collectionId': root.collectionId,
                     'synced': false
                 },
@@ -213,11 +215,27 @@ var uuidv4 = require('uuid/v4'),
 
             request.url = decodeURI(url.resolve(tempBasePath, path))
                 .replace(/POSTMAN_VARIABLE_OPEN_DB/gi, '{{')
-                .replace(/POSTMAN_VARIABLE_CLOSE_DB/gi, '}}');
+               .replace(/POSTMAN_VARIABLE_CLOSE_DB/gi, '}}');
 
+//		function replace_matched (request_url) {
+                let paths= request.url.split("/");
+                var output_paths=paths.reduce(function (accumulator,path) {
+                                  accumulator.push(path.replace(RegExp("^:([a-z_]*)|^({[a-z_]*})"),`{{$1}}`));
+               return accumulator
+                        }, []);
+		request.url= output_paths.join("/")
+//		request.url= request.url.replace(RegExp("/:([a-z_]*)"),`/{{$1}}`)
+			//       return request_url;
+		      // }}
+//request.url=replace_matched(request.url);
+
+		//             request.url = (RegExp(":").test(request.url))?request.url.split("/"):request.url;
+//		_.filter(RegExp(":").test(request.url)
+	    //request.url=url.resolve(tempBasePath, path);
             request.method = method;
-            request.name = operation.summary;
-            request.time = (new Date()).getTime();
+           // request.name = operation.summary;
+           request.name=method + operation.operationId;
+		request.time = (new Date()).getTime();
 
             // Handle custom swagger attributes for postman aws integration
             if (operation[META_KEY]) {
@@ -341,9 +359,8 @@ var uuidv4 = require('uuid/v4'),
                         pathItem[verb],
                         folderName,
                         paramsForPathItem
-                    );
-                }
-            }
+                    );}
+	    } 
         },
 
         handlePaths: function (json) {

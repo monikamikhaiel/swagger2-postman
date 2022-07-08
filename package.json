@@ -1,34 +1,55 @@
 {
-  "name": "swagger2-to-postman",
-  "version": "1.1.9",
-  "description": "A module to convert swagger 2.0 JSONs to Postman Collection Format v1",
-  "main": "convert.js",
-  "scripts": {
-    "test": "scripts/test.sh"
+  "_from": "swagger2-to-postman-updated",
+  "_id": "swagger2-to-postman-updated@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-1TPbeZPjQuuwmF5RCku3+Mx1tUtoyaclJa/LqmHWUYW54k0i0QJmPJvC/yConBIxWdJ7ptONAkdO1Ut+C/REDw==",
+  "_location": "/swagger2-to-postman-updated",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "swagger2-to-postman-updated",
+    "name": "swagger2-to-postman-updated",
+    "escapedName": "swagger2-to-postman-updated",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
   },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/swagger2-to-postman-updated/-/swagger2-to-postman-updated-1.0.0.tgz",
+  "_shasum": "c9e5c14720be8082c803c1fd78731cb15cc7f0bc",
+  "_spec": "swagger2-to-postman-updated",
+  "_where": "/home/cloud",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/monikamikhaiel/swagger2-postman/issues"
+  },
+  "bundleDependencies": false,
   "dependencies": {
-    "jsface": "^2.2.0",
-    "uuid": "^3.2.1"
+    "postman-collection-transformer": "^4.1.6"
   },
+  "deprecated": false,
+  "description": "modified version of  swagger2-to-postman ",
+  "devDependencies": {},
+  "directories": {
+    "test": "test"
+  },
+  "homepage": "https://github.com/monikamikhaiel/swagger2-postman#readme",
+  "license": "ISC",
+  "main": "convert.js",
+  "name": "swagger2-to-postman-updated",
   "repository": {
     "type": "git",
-    "url": "https://github.com/postmanlabs/swagger2-postman.git"
+    "url": "git+https://github.com/monikamikhaiel/swagger2-postman.git"
   },
-  "keywords": [
-    "swagger",
-    "postman",
-    "newman"
-  ],
-  "author": "Postman Labs <help@getpostman.com>",
-  "license": "Apache 2.0",
-  "bugs": {
-    "url": "https://github.com/postmanlabs/swagger2-postman/issues"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/postmanlabs/swagger2-postman",
-  "devDependencies": {
-    "expect.js": "^0.3.1",
-    "jscs": "^2.1.0",
-    "jshint": "^2.8.0",
-    "mocha": "^2.2.5"
-  }
+  "version": "1.0.1",
+ "bin":{
+   "convert_swagger_collection" : "./bin/swagger.js"
+ }
 }
