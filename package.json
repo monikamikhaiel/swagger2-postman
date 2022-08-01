@@ -29,11 +29,16 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "postman-collection-transformer": "^4.1.6"
+    "array-back": "^6.2.2",
+    "command-line-args": "^5.2.1",
+    "inherits": "^2.0.4",
+    "jsface": "^2.4.9",
+    "path": "^0.12.7",
+    "postman-collection-transformer": "^4.1.6",
+    "uuid": "^8.3.2"
   },
   "deprecated": false,
   "description": "modified version of  swagger2-to-postman ",
-  "devDependencies": {},
   "directories": {
     "test": "test"
   },
@@ -48,5 +53,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.0.1"
+  "version": "1.0.2"
 }

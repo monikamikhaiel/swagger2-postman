@@ -1,5 +1,6 @@
-var uuidv4 = require('uuid/v4'),
-    jsface = require('jsface'),
+const { v4: uuidv4 } = require('uuid');
+//var uuidv4 = require('uuid'),
+var   jsface = require('jsface'),
     url = require('url'),
     META_KEY = 'x-postman-meta',
 
@@ -66,13 +67,12 @@ var uuidv4 = require('uuid/v4'),
             //    this.basePath += json.basePath;
            //}
 
-            if (json.schemes && json.schemes.indexOf('https') != -1) {
-                this.basePath = 'https://' + this.basePath;
-            }
-            else {
-                this.basePath = 'http://' + this.basePath;
-            }
-
+           if (json.schemes && json.schemes.indexOf('http') != -1) {
+            this.basePath = 'http://' + this.basePath;
+        }
+        else {
+            this.basePath = 'https://' + this.basePath;
+        }
             if (!this.endsWith(this.basePath, '/')) {
                 this.basePath += '/';
             }
