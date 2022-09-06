@@ -30,7 +30,7 @@ function convert_postman_collection_v1 (swagger_file_path) {
     return convertResult.collection;
 }
 //variables in collection variable 
-function Add_collection_variables(collection){
+function Add_collection_variables(collection,path_){
   var variables=[];
 // grep all the variables
   for (i=0;i<collection.requests.length;i++){
@@ -68,7 +68,9 @@ for (i=0;i<uniqueChars.length;i++){
   }
 }
 initial_string+='],"_postman_variable_scope": "environment","_postman_exported_at": "2021-09-29T14:07:06.787Z","_postman_exported_using": "Postman/8.2.3"}'
-fs.writeFileSync("environment_variables.json",initial_string);
+var file=path.join(path_,"environment_variables.json");
+//console.log(file);
+fs.writeFileSync(file,initial_string);
 	 }
 
 // convert v1 to v2 
@@ -91,7 +93,10 @@ function fix_postman_version(output_v2_path,swagger_file_path){
        // console.log(converted);
 	    fs.writeFileSync(output_v2_path,converted);
     });
-    Add_collection_variables(objectToConvert);
+    // Add the environment for the apis
+    var directory_collection=path.dirname(output_v2_path);
+   // console.log(directory_collection,typeof(directory_collection));
+    Add_collection_variables(objectToConvert,directory_collection);
 	 }
 
 const optionDefinitions = [
